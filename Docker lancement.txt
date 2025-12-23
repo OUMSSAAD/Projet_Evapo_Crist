@@ -1,0 +1,25 @@
+Docker lancement : 
+    Installation de Docker Desktop
+    Création du Dockerfile
+    Création du .dockerignore
+    Construction de l'image Docker (evapo-crist-app)  ( cmd :
+                         Génération d l'image  :  docker build -t evapo-crist-app .
+                         Vérifier que l'image existe :  docker images
+                        Lancer le conteneur          : docker run -p 8501:8501 evapo-crist-app
+                                                                                              )
+    Lancement du conteneur
+    Accès à l'application via le navigateur
+
+
+
+
+
+
+docker hub : 
+
+
+** Taguer l'image avec le bon nom ** : docker tag evapo-crist-app oumssaad123/evapo-crist-app:latest
+** pousser l'image vers docker hub **: docker push oumssaad123/evapo-crist-app:latest
+
+
+

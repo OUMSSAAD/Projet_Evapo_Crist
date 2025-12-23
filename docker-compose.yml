@@ -1,0 +1,9 @@
+services:
+  app:
+    image: oumssaad123/evapo-crist-app:latest
+    container_name: evapo-crist-container
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
