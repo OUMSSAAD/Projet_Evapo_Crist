@@ -1243,10 +1243,7 @@ st.markdown("""
             <strong>Université Hassan 1 - FST Settat</strong><br>
             Filière Procédés et Ingénierie Chimique (PIC) | Année 2024-2025
         </p>
-        <p style="color: #94a3b8; font-size: 0.875rem; margin-top: 1rem;">
-            Optimisée pour Desktop & Mobile 📱💻<br>
-            Version Professionnelle 2.0
-        </p>
+        
     </div>
 </div>
 """, unsafe_allow_html=True)
