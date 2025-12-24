@@ -1244,6 +1244,5 @@ st.markdown("""
             Filière Procédés et Ingénierie Chimique (PIC) | Année 2024-2025
         </p>
         
-    </div>
 </div>
 """, unsafe_allow_html=True)
