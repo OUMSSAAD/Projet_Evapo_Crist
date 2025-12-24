@@ -361,6 +361,9 @@ st.markdown("""
     <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 0.5rem;">
         Université Hassan 1 - FST Settat | Filière PIC 2025-2026
     </p>
+    <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 0.5rem;">
+        Réalisé par : OUMSSAAD EL GHAZI |  KOLMAN GOD WIN TETE 
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
