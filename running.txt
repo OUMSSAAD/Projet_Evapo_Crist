@@ -5,3 +5,11 @@ python -m streamlit run app.py
             Optimisée pour Desktop & Mobile 📱💻<br>
             Version Professionnelle 2.0
         </p>
+
+
+
+Lors de changment : 
+CMD : 
+            git add .
+            git commit -m "Test automatic deployment"
+            git push origin master 

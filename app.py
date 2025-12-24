@@ -548,13 +548,13 @@ with tab_evap:
                 st.markdown("### 📋 Détails par Effet")
                 
                 resultats = pd.DataFrame({
-                    '🔢 Effet': range(1, n_effets + 1),
-                    '💧 Liquide (kg/h)': [f"{L:.0f}" for L in evap.L],
-                    '💨 Vapeur (kg/h)': [f"{V:.0f}" for V in evap.V],
-                    '📊 Concentration (%)': [f"{x*100:.1f}" for x in evap.x],
-                    '🌡️ Température (°C)': [f"{T:.1f}" for T in evap.T],
-                    '⚡ Pression (bar)': [f"{P:.2f}" for P in evap.P],
-                    '📏 Surface (m²)': [f"{A:.1f}" for A in evap.A]
+                    ' Effet': range(1, n_effets + 1),
+                    ' Liquide (kg/h)': [f"{L:.0f}" for L in evap.L],
+                    ' Vapeur (kg/h)': [f"{V:.0f}" for V in evap.V],
+                    ' Concentration (%)': [f"{x*100:.1f}" for x in evap.x],
+                    ' Température (°C)': [f"{T:.1f}" for T in evap.T],
+                    ' Pression (bar)': [f"{P:.2f}" for P in evap.P],
+                    ' Surface (m²)': [f"{A:.1f}" for A in evap.A]
                 })
                 
                 st.dataframe(resultats, use_container_width=True, hide_index=True)
@@ -568,8 +568,8 @@ with tab_evap:
                 
                 fig = make_subplots(
                     rows=2, cols=2,
-                    subplot_titles=('🌡️ Température', '📊 Concentration', 
-                                  '⚡ Pression', '📏 Surfaces d\'échange'),
+                    subplot_titles=(' Température', ' Concentration', 
+                                  ' Pression', ' Surfaces d\'échange'),
                     specs=[[{'type': 'scatter'}, {'type': 'scatter'}],
                            [{'type': 'scatter'}, {'type': 'bar'}]]
                 )
