@@ -23,3 +23,13 @@ docker hub :
 
 
 
+OUR IMAGE / ****** docker.io/oumssaad123/evapo-crist-app:latest ******
+
+
+Piplenie CI / CD : 
+1- Run ; 
+          docker login -u oumssaad123
+2-At the password prompt, enter the personal access token.
+          dckr_pat_NYv2hVH22Nh-4dCD1oxVO9dlQJs
+
+
