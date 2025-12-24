@@ -1,7 +1,7 @@
 """
 Application Web Streamlit - Évaporation et Cristallisation
 Version Professionnelle avec Design Moderne
-Auteur: Projet PIC 2024-2025
+Auteur: Projet PIC 2025-2026
 """
 
 import streamlit as st
@@ -359,7 +359,7 @@ st.markdown("""
         Conception d'une Unité Intégrée de Production de Sucre
     </p>
     <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 0.5rem;">
-        Université Hassan 1 - FST Settat | Filière PIC 2024-2025
+        Université Hassan 1 - FST Settat | Filière PIC 2025-2026
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -431,10 +431,7 @@ with tab_accueil:
     
     with col2:
         st.markdown("""
-        <div class="info-box">
-            <h3 style="margin-top: 0;">📱 Application Mobile</h3>
-            <p>Cette application est entièrement optimisée pour mobile et desktop !</p>
-        </div>
+        
         """, unsafe_allow_html=True)
         
         st.markdown("""
