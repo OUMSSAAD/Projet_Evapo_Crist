@@ -1,6 +1,6 @@
 """
 Application Web - Évaporation et Cristallisation
-Version Ultra-Professionnelle Simplifiée
+Version Ultra-Professionnelle - Design Premium
 Université Hassan 1 - FST Settat | PIC 2025-2026
 Réalisé par: OUMSSAAD EL GHAZI | KOLMAN GOD WIN TETE
 """
@@ -20,237 +20,427 @@ from optimisation import AnalyseEconomique
 # ==================== CONFIGURATION ====================
 
 st.set_page_config(
-    page_title="Évaporation & Cristallisation",
+    page_title="Évaporation & Cristallisation Pro",
     page_icon="🏭",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# ==================== STYLE MINIMALISTE PROFESSIONNEL ====================
+# ==================== PALETTE PREMIUM ====================
 
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
-    /* Variables Épurées */
+    /* Palette Premium Inspirée de Stripe/Linear */
     :root {
-        --primary: #2563eb;
-        --primary-dark: #1e40af;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-600: #4b5563;
+        /* Primaire - Bleu profond élégant */
+        --primary: #0066FF;
+        --primary-hover: #0052CC;
+        --primary-light: #E6F0FF;
+        --primary-dark: #003D99;
+        
+        /* Secondaire - Violet sophistiqué */
+        --secondary: #6366F1;
+        --secondary-light: #EEF2FF;
+        
+        /* Accent - Cyan moderne */
+        --accent: #06B6D4;
+        --accent-light: #CFFAFE;
+        
+        /* Succès */
+        --success: #10B981;
+        --success-light: #D1FAE5;
+        
+        /* Warning */
+        --warning: #F59E0B;
+        --warning-light: #FEF3C7;
+        
+        /* Danger */
+        --danger: #EF4444;
+        --danger-light: #FEE2E2;
+        
+        /* Neutres - Échelle grise sophistiquée */
+        --gray-50: #F9FAFB;
+        --gray-100: #F3F4F6;
+        --gray-200: #E5E7EB;
+        --gray-300: #D1D5DB;
+        --gray-400: #9CA3AF;
+        --gray-500: #6B7280;
+        --gray-600: #4B5563;
+        --gray-700: #374151;
+        --gray-800: #1F2937;
         --gray-900: #111827;
-        --success: #10b981;
-        --warning: #f59e0b;
-        --danger: #ef4444;
+        
+        /* Blanc pur et noir profond */
+        --white: #FFFFFF;
+        --black: #000000;
+        
+        /* Backgrounds */
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F9FAFB;
+        --bg-tertiary: #F3F4F6;
+        
+        /* Bordures */
+        --border: #E5E7EB;
+        --border-hover: #D1D5DB;
+        
+        /* Ombres */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     }
     
     /* Reset Global */
     * {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     
     /* Container */
     .main .block-container {
-        padding: 1.5rem 2rem;
-        max-width: 1280px;
+        padding: 2rem 3rem;
+        max-width: 1400px;
+        background: var(--bg-secondary);
     }
     
-    /* Header Minimaliste */
-    .app-header {
-        background: white;
-        border-bottom: 1px solid var(--gray-200);
-        padding: 2rem 0;
-        margin-bottom: 2rem;
+    /* Header Premium */
+    .premium-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 3rem 2.5rem;
+        border-radius: 16px;
+        color: white;
+        margin-bottom: 2.5rem;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
     }
     
-    .app-title {
-        font-size: 1.875rem;
-        font-weight: 700;
-        color: var(--gray-900);
-        margin: 0 0 0.5rem 0;
+    .premium-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    
+    .premium-header h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin: 0 0 0.75rem 0;
         letter-spacing: -0.025em;
+        position: relative;
+        z-index: 1;
     }
     
-    .app-subtitle {
-        font-size: 0.875rem;
-        color: var(--gray-600);
-        font-weight: 400;
+    .premium-header .subtitle {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: 0.95;
         margin: 0;
+        position: relative;
+        z-index: 1;
     }
     
-    /* Tabs Épurés */
+    .premium-header .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.375rem 0.875rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Tabs Premium */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 0;
-        background: white;
-        border-bottom: 1px solid var(--gray-200);
-        padding: 0;
+        gap: 0.5rem;
+        background: var(--white);
+        padding: 0.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
     }
     
     .stTabs [data-baseweb="tab"] {
-        padding: 0.875rem 1.5rem;
-        border: none;
-        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
         font-size: 0.875rem;
         color: var(--gray-600);
         background: transparent;
-        border-bottom: 2px solid transparent;
-        transition: all 0.2s;
+        border: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .stTabs [data-baseweb="tab"]:hover {
-        color: var(--gray-900);
-        background: var(--gray-50);
+        background: var(--primary-light);
+        color: var(--primary);
     }
     
     .stTabs [aria-selected="true"] {
-        color: var(--primary);
-        border-bottom-color: var(--primary);
-        background: transparent;
-    }
-    
-    /* Buttons Minimalistes */
-    .stButton > button {
         background: var(--primary);
         color: white;
-        border: none;
-        padding: 0.625rem 1.25rem;
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 0.875rem;
-        transition: all 0.2s;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: var(--shadow-md);
     }
     
-    .stButton > button:hover {
-        background: var(--primary-dark);
-        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.15);
+    /* Cards Premium */
+    .premium-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-sm);
     }
     
-    /* Cards Simples */
-    .metric-card {
-        background: white;
-        border: 1px solid var(--gray-200);
-        border-radius: 8px;
-        padding: 1.25rem;
-        transition: all 0.2s;
+    .premium-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
     }
     
-    .metric-card:hover {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        border-color: var(--gray-300);
+    /* Metric Card Premium */
+    .metric-premium {
+        background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .metric-premium::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    
+    .metric-premium:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-md);
     }
     
     .metric-label {
         font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--gray-600);
+        font-weight: 700;
+        color: var(--gray-500);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 0.5rem;
     }
     
     .metric-value {
-        font-size: 1.875rem;
-        font-weight: 700;
-        color: var(--gray-900);
-        line-height: 1;
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+        margin: 0.25rem 0;
     }
     
     .metric-unit {
         font-size: 0.875rem;
-        color: var(--gray-600);
-        font-weight: 400;
-        margin-top: 0.25rem;
+        color: var(--gray-500);
+        font-weight: 500;
     }
     
-    /* Inputs Raffinés */
+    /* Buttons Premium */
+    .stButton > button {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-md);
+        letter-spacing: 0.01em;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-lg);
+        background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-dark) 100%);
+    }
+    
+    .stButton > button:active {
+        transform: translateY(0);
+    }
+    
+    /* Inputs Premium */
     .stNumberInput > div > div > input,
     .stSelectbox > div > div {
-        border: 1px solid var(--gray-200);
-        border-radius: 6px;
-        font-size: 0.875rem;
-        transition: all 0.2s;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-size: 0.9375rem;
+        transition: all 0.2s ease;
+        background: var(--white);
+        font-weight: 500;
     }
     
     .stNumberInput > div > div > input:focus,
     .stSelectbox > div > div:focus-within {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        box-shadow: 0 0 0 3px var(--primary-light);
     }
     
-    /* Slider Minimal */
+    /* Slider Premium */
     .stSlider > div > div > div {
-        background: var(--primary);
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
     }
     
-    /* Messages */
+    .stSlider > div > div > div > div {
+        background: var(--white);
+        border: 3px solid var(--primary);
+        box-shadow: var(--shadow-md);
+    }
+    
+    /* Alerts Premium */
     .alert-success {
-        background: #ecfdf5;
-        border-left: 3px solid var(--success);
-        padding: 1rem;
-        border-radius: 6px;
-        color: #065f46;
-        font-size: 0.875rem;
+        background: var(--success-light);
+        border-left: 4px solid var(--success);
+        padding: 1.25rem;
+        border-radius: 10px;
+        color: #065F46;
+        font-weight: 500;
+        box-shadow: var(--shadow-sm);
     }
     
     .alert-info {
-        background: #eff6ff;
-        border-left: 3px solid var(--primary);
-        padding: 1rem;
-        border-radius: 6px;
-        color: #1e40af;
-        font-size: 0.875rem;
+        background: var(--primary-light);
+        border-left: 4px solid var(--primary);
+        padding: 1.25rem;
+        border-radius: 10px;
+        color: var(--primary-dark);
+        font-weight: 500;
+        box-shadow: var(--shadow-sm);
     }
     
-    /* Dataframes */
+    .alert-warning {
+        background: var(--warning-light);
+        border-left: 4px solid var(--warning);
+        padding: 1.25rem;
+        border-radius: 10px;
+        color: #92400E;
+        font-weight: 500;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    /* Dataframe Premium */
     .dataframe {
         font-size: 0.875rem;
-        border: 1px solid var(--gray-200);
-        border-radius: 6px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
         overflow: hidden;
+        box-shadow: var(--shadow-sm);
     }
     
-    /* Progress Bar */
+    /* Progress Bar Premium */
     .stProgress > div > div {
-        background: var(--primary);
-        height: 4px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        height: 6px;
+        border-radius: 10px;
     }
     
-    /* Section Headers */
+    /* Expander Premium */
+    .streamlit-expanderHeader {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        padding: 1rem 1.25rem;
+        transition: all 0.2s ease;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background: var(--primary-light);
+        border-color: var(--primary);
+    }
+    
+    /* Headers */
     h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: 1.75rem;
+        font-weight: 800;
         color: var(--gray-900);
-        margin: 2rem 0 1rem 0;
+        margin: 2.5rem 0 1.25rem 0;
         letter-spacing: -0.025em;
     }
     
     h3 {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--gray-800);
+        margin: 1.75rem 0 1rem 0;
+    }
+    
+    /* Section Divider */
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+        margin: 2rem 0;
+    }
+    
+    /* Badge */
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
         font-weight: 600;
-        color: var(--gray-900);
-        margin: 1.5rem 0 0.75rem 0;
+        letter-spacing: 0.025em;
     }
     
-    /* Expander */
-    .streamlit-expanderHeader {
-        background: var(--gray-50);
-        border: 1px solid var(--gray-200);
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 0.875rem;
+    .badge-primary {
+        background: var(--primary-light);
+        color: var(--primary-dark);
     }
     
-    /* Footer */
-    .app-footer {
-        border-top: 1px solid var(--gray-200);
-        padding: 2rem 0 1rem 0;
+    .badge-success {
+        background: var(--success-light);
+        color: #065F46;
+    }
+    
+    /* Footer Premium */
+    .premium-footer {
+        border-top: 1px solid var(--border);
+        padding: 2.5rem 0 1.5rem 0;
         margin-top: 4rem;
         text-align: center;
+    }
+    
+    .premium-footer-content {
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+    
+    .premium-footer p {
         color: var(--gray-600);
-        font-size: 0.875rem;
+        font-size: 0.9375rem;
+        margin: 0.5rem 0;
+        font-weight: 500;
+    }
+    
+    .premium-footer strong {
+        color: var(--gray-900);
+        font-weight: 700;
     }
     
     /* Responsive */
@@ -258,59 +448,83 @@ st.markdown("""
         .main .block-container {
             padding: 1rem;
         }
-        .app-title {
-            font-size: 1.5rem;
+        .premium-header h1 {
+            font-size: 1.75rem;
         }
         .metric-value {
             font-size: 1.5rem;
         }
     }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .premium-card, .metric-premium {
+        animation: fadeInUp 0.5s ease-out;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== HEADER ====================
+# ==================== HEADER PREMIUM ====================
 
 st.markdown("""
-<div class="app-header">
-    <div class="app-title"> Évaporation & Cristallisation</div>
-    <div class="app-subtitle">
-        Université Hassan 1 - FST Settat | PIC 2025-2026 | 
-        OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE
+<div class="premium-header">
+    <h1>🏭 Évaporation & Cristallisation</h1>
+    <div class="subtitle">
+        Conception d'une Unité Intégrée de Production de Sucre
     </div>
+    <div class="badge">Université Hassan 1 - FST Settat | PIC 2025-2026</div>
+    <div class="badge">OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE</div>
 </div>
 """, unsafe_allow_html=True)
 
 # ==================== NAVIGATION ====================
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "Accueil",
-    "Évaporation", 
-    "Cristallisation",
-    "Optimisation",
-    "Calculateur"
+    "🏠 Accueil",
+    "💧 Évaporation", 
+    "💎 Cristallisation",
+    "📊 Optimisation",
+    "🧮 Calculateur"
 ])
 
 # ==================== ACCUEIL ====================
 
 with tab1:
-    col1, col2 = st.columns([2, 1])
+    col1, col2 = st.columns([2, 1], gap="large")
     
     with col1:
-        st.markdown("## Présentation")
+        st.markdown("## 📋 Présentation du Projet")
         
         st.markdown("""
-        Cette application permet la **simulation complète** d'une unité 
-        de production de sucre cristallisé à partir de jus de canne à sucre.
+        <div class="premium-card">
+            <h3 style="color: var(--primary); margin-top: 0;">🎯 Contexte Industriel</h3>
+            <p style="line-height: 1.8; color: var(--gray-700);">
+                Application de <strong>simulation avancée</strong> pour la conception d'une unité 
+                complète de production de sucre cristallisé à partir de jus de canne à sucre.
+            </p>
+            <p style="line-height: 1.8; color: var(--gray-700); margin-bottom: 0;">
+                <strong>Le système intègre :</strong>
+            </p>
+            <ul style="line-height: 2; color: var(--gray-700);">
+                <li>✅ Évaporation à multiples effets (2-5 configurations)</li>
+                <li>✅ Cristallisation batch avec contrôle thermique avancé</li>
+                <li>✅ Optimisation énergétique et récupération de chaleur</li>
+                <li>✅ Analyse technico-économique complète</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
         
-        **Fonctionnalités principales :**
-        
-        - Évaporation à multiples effets (2-5)
-        - Cristallisation batch avec contrôle thermique
-        - Analyses d'optimisation technico-économique
-        - Calculateurs thermodynamiques
-        """)
-        
-        st.markdown("### Spécifications")
+        st.markdown("### 📊 Spécifications Techniques")
         
         specs = pd.DataFrame({
             'Paramètre': [
@@ -326,48 +540,56 @@ with tab1:
                 '65 %',
                 '85 °C',
                 '3.5 bar'
+            ],
+            'Statut': [
+                '✓ Nominal',
+                '✓ Optimal',
+                '✓ Cible',
+                '✓ Standard',
+                '✓ Efficace'
             ]
         })
         
         st.dataframe(specs, use_container_width=True, hide_index=True)
     
     with col2:
-        st.markdown("### Métriques")
+        st.markdown("### 📈 Métriques Clés")
         
-        metrics = [
-            ("Production", "43 kt/an"),
-            ("Économie vapeur", "2.04"),
-            ("ROI", "0.08 ans"),
-            ("VAN", "274 M€")
+        metrics_data = [
+            ("Production Annuelle", "43", "kt/an", "success"),
+            ("Économie Vapeur", "2.04", "ratio", "primary"),
+            ("Retour Investissement", "0.08", "ans", "warning"),
+            ("Valeur Actuelle Nette", "274", "M€", "success")
         ]
         
-        for label, value in metrics:
+        for label, value, unit, color in metrics_data:
             st.markdown(f"""
-            <div class="metric-card">
+            <div class="metric-premium">
                 <div class="metric-label">{label}</div>
                 <div class="metric-value">{value}</div>
+                <div class="metric-unit">{unit}</div>
             </div>
             """, unsafe_allow_html=True)
 
 # ==================== ÉVAPORATION ====================
 
 with tab2:
-    st.markdown("## Évaporation à Multiples Effets")
+    st.markdown("## 💧 Simulation d'Évaporation à Multiples Effets")
     
-    with st.expander(" Paramètres", expanded=False):
+    with st.expander("⚙️ Configuration des Paramètres", expanded=False):
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            n_effets = st.slider("Nombre d'effets", 2, 5, 3)
+            n_effets = st.slider("Nombre d'effets", 2, 5, 3, help="Plus d'effets = meilleure économie")
         with col2:
-            P_vapeur = st.number_input("Pression (bar)", 2.0, 5.0, 3.5, 0.1)
+            P_vapeur = st.number_input("Pression vapeur (bar)", 2.0, 5.0, 3.5, 0.1)
         with col3:
             x_final = st.number_input("Concentration (%)", 50.0, 80.0, 65.0, 1.0)
         with col4:
             F_debit = st.number_input("Débit (kg/h)", 10000, 40000, 20000, 1000)
     
-    if st.button("Simuler", use_container_width=True):
-        with st.spinner("Calcul..."):
+    if st.button("▶️  Lancer la Simulation", use_container_width=True):
+        with st.spinner("⏳ Calcul en cours..."):
             try:
                 evap = EvaporateurMultiplesEffets(n_effets=n_effets)
                 evap.P_vapeur = P_vapeur
@@ -375,22 +597,23 @@ with tab2:
                 evap.F = F_debit
                 evap.resoudre_bilans()
                 
-                st.markdown('<div class="alert-success">✓ Simulation réussie</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-success"><strong>✓ Simulation réussie !</strong> Les résultats sont maintenant disponibles ci-dessous.</div>', unsafe_allow_html=True)
                 
                 # Métriques
+                st.markdown("### 📊 Résultats Principaux")
                 col1, col2, col3, col4 = st.columns(4)
                 
-                metrics_data = [
-                    ("Vapeur chauffe", f"{evap.S:.0f}", "kg/h", col1),
-                    ("Économie", f"{evap.economie_vapeur():.2f}", "ratio", col2),
-                    ("Surface", f"{np.sum(evap.A):.0f}", "m²", col3),
-                    ("Concentration", f"{evap.x[-1]*100:.1f}", "%", col4)
+                metrics = [
+                    ("Vapeur de Chauffe", f"{evap.S:.0f}", "kg/h", col1),
+                    ("Économie Vapeur", f"{evap.economie_vapeur():.2f}", "ratio", col2),
+                    ("Surface Totale", f"{np.sum(evap.A):.0f}", "m²", col3),
+                    ("Concentration Finale", f"{evap.x[-1]*100:.1f}", "%", col4)
                 ]
                 
-                for label, value, unit, col in metrics_data:
+                for label, value, unit, col in metrics:
                     with col:
                         st.markdown(f"""
-                        <div class="metric-card">
+                        <div class="metric-premium">
                             <div class="metric-label">{label}</div>
                             <div class="metric-value">{value}</div>
                             <div class="metric-unit">{unit}</div>
@@ -398,81 +621,88 @@ with tab2:
                         """, unsafe_allow_html=True)
                 
                 # Tableau
-                st.markdown("### Résultats")
+                st.markdown("### 📋 Détails par Effet")
                 
                 resultats = pd.DataFrame({
                     'Effet': range(1, n_effets + 1),
-                    'L (kg/h)': [f"{L:.0f}" for L in evap.L],
-                    'V (kg/h)': [f"{V:.0f}" for V in evap.V],
-                    'x (%)': [f"{x*100:.1f}" for x in evap.x],
-                    'T (°C)': [f"{T:.1f}" for T in evap.T],
-                    'P (bar)': [f"{P:.2f}" for P in evap.P],
-                    'A (m²)': [f"{A:.1f}" for A in evap.A]
+                    'Liquide (kg/h)': [f"{L:.0f}" for L in evap.L],
+                    'Vapeur (kg/h)': [f"{V:.0f}" for V in evap.V],
+                    'Concentration (%)': [f"{x*100:.1f}" for x in evap.x],
+                    'Température (°C)': [f"{T:.1f}" for T in evap.T],
+                    'Pression (bar)': [f"{P:.2f}" for P in evap.P],
+                    'Surface (m²)': [f"{A:.1f}" for A in evap.A]
                 })
                 
                 st.dataframe(resultats, use_container_width=True, hide_index=True)
                 
-                # Graphiques
+                # Graphiques Plotly
+                st.markdown("### 📈 Visualisations")
+                
                 fig = make_subplots(
                     rows=2, cols=2,
                     subplot_titles=('Température', 'Concentration', 'Pression', 'Surface'),
-                    vertical_spacing=0.12,
+                    vertical_spacing=0.15,
                     horizontal_spacing=0.1
                 )
                 
                 effets = list(range(1, n_effets + 1))
                 
+                # Couleurs premium
+                color_temp = '#0066FF'
+                color_conc = '#10B981'
+                color_press = '#F59E0B'
+                color_surf = '#6366F1'
+                
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.T, mode='lines+markers',
-                             line=dict(color='#2563eb', width=2),
-                             marker=dict(size=8)),
+                             line=dict(color=color_temp, width=3),
+                             marker=dict(size=10, line=dict(color='white', width=2))),
                     row=1, col=1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.x * 100, mode='lines+markers',
-                             line=dict(color='#10b981', width=2),
-                             marker=dict(size=8)),
+                             line=dict(color=color_conc, width=3),
+                             marker=dict(size=10, line=dict(color='white', width=2))),
                     row=1, col=2
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.P, mode='lines+markers',
-                             line=dict(color='#f59e0b', width=2),
-                             marker=dict(size=8)),
+                             line=dict(color=color_press, width=3),
+                             marker=dict(size=10, line=dict(color='white', width=2))),
                     row=2, col=1
                 )
                 
                 fig.add_trace(
-                    go.Bar(x=effets, y=evap.A, marker=dict(color='#8b5cf6')),
+                    go.Bar(x=effets, y=evap.A, marker=dict(color=color_surf, line=dict(color='white', width=1))),
                     row=2, col=2
                 )
                 
-                fig.update_xaxes(title_text="Effet", showgrid=False)
-                fig.update_yaxes(title_text="T (°C)", row=1, col=1, showgrid=True, gridcolor='#f3f4f6')
-                fig.update_yaxes(title_text="x (%)", row=1, col=2, showgrid=True, gridcolor='#f3f4f6')
-                fig.update_yaxes(title_text="P (bar)", row=2, col=1, showgrid=True, gridcolor='#f3f4f6')
-                fig.update_yaxes(title_text="A (m²)", row=2, col=2, showgrid=True, gridcolor='#f3f4f6')
+                fig.update_xaxes(title_text="Effet", showgrid=False, title_font=dict(size=13, family='Inter'))
+                fig.update_yaxes(showgrid=True, gridcolor='#F3F4F6', title_font=dict(size=13, family='Inter'))
                 
                 fig.update_layout(
-                    height=600,
+                    height=650,
                     showlegend=False,
                     template='plotly_white',
-                    font=dict(family="Inter", size=12),
-                    margin=dict(t=40, b=40, l=40, r=40)
+                    font=dict(family="Inter", size=12, color='#374151'),
+                    margin=dict(t=50, b=40, l=40, r=40),
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)'
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
                 
             except Exception as e:
-                st.error(f"Erreur: {e}")
+                st.error(f"❌ Erreur lors de la simulation: {e}")
 
 # ==================== CRISTALLISATION ====================
 
 with tab3:
-    st.markdown("## Cristallisation Batch")
+    st.markdown("## 💎 Cristallisation Batch")
     
-    with st.expander(" Paramètres", expanded=False):
+    with st.expander("⚙️ Configuration des Paramètres", expanded=False):
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
@@ -484,8 +714,8 @@ with tab3:
         with col4:
             profil = st.selectbox("Profil", ["lineaire", "exponentiel", "optimal"])
     
-    if st.button("Simuler ", use_container_width=True, key="crist_btn"):
-        with st.spinner("Calcul..."):
+    if st.button("▶️  Lancer la Simulation ", use_container_width=True, key="crist"):
+        with st.spinner("⏳ Simulation en cours..."):
             try:
                 crist = CristalliseurBatch()
                 crist.T_0 = T_initial
@@ -493,21 +723,22 @@ with tab3:
                 crist.duree = duree * 3600
                 crist.simuler(profil=profil, n_points=500)
                 
-                st.markdown('<div class="alert-success">✓ Simulation réussie</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-success"><strong>✓ Simulation terminée !</strong> Analyse complète disponible.</div>', unsafe_allow_html=True)
                 
                 # Métriques
+                st.markdown("### 📊 Résultats de Cristallisation")
                 col1, col2, col3 = st.columns(3)
                 
                 metrics = [
-                    ("Taille moyenne", f"{crist.L_50*1e6:.1f}", "µm", col1),
-                    ("CV", f"{crist.CV:.1f}", "%", col2),
-                    ("Concentration", f"{crist.concentration[-1]:.2f}", "g/100g", col3)
+                    ("Taille Moyenne", f"{crist.L_50*1e6:.1f}", "µm", col1),
+                    ("Coeff. Variation", f"{crist.CV:.1f}", "%", col2),
+                    ("Concentration Finale", f"{crist.concentration[-1]:.2f}", "g/100g", col3)
                 ]
                 
                 for label, value, unit, col in metrics:
                     with col:
                         st.markdown(f"""
-                        <div class="metric-card">
+                        <div class="metric-premium">
                             <div class="metric-label">{label}</div>
                             <div class="metric-value">{value}</div>
                             <div class="metric-unit">{unit}</div>
@@ -515,55 +746,58 @@ with tab3:
                         """, unsafe_allow_html=True)
                 
                 # Graphiques
+                st.markdown("### 📈 Évolution Temporelle")
+                
                 temps_h = crist.temps / 3600
                 
                 fig = make_subplots(
                     rows=2, cols=2,
-                    subplot_titles=('Température', 'Sursaturation', 'Concentration', 'Population'),
-                    vertical_spacing=0.12,
+                    subplot_titles=('🌡️ Température', '📊 Sursaturation', '💧 Concentration', '📈 Population'),
+                    vertical_spacing=0.15,
                     horizontal_spacing=0.1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.temperature, mode='lines',
-                             line=dict(color='#ef4444', width=2)),
+                             line=dict(color='#EF4444', width=3), fill='tozeroy',
+                             fillcolor='rgba(239, 68, 68, 0.1)'),
                     row=1, col=1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.sursaturation, mode='lines',
-                             line=dict(color='#2563eb', width=2)),
+                             line=dict(color='#0066FF', width=3)),
                     row=1, col=2
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.concentration, mode='lines',
-                             line=dict(color='#10b981', width=2)),
+                             line=dict(color='#10B981', width=3)),
                     row=2, col=1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.moments[:, 0], mode='lines',
-                             line=dict(color='#8b5cf6', width=2)),
+                             line=dict(color='#6366F1', width=3)),
                     row=2, col=2
                 )
                 
-                fig.update_xaxes(title_text="Temps (h)", showgrid=False)
-                fig.update_yaxes(showgrid=True, gridcolor='#f3f4f6')
+                fig.update_xaxes(title_text="Temps (h)", showgrid=False, title_font=dict(family='Inter'))
+                fig.update_yaxes(showgrid=True, gridcolor='#F3F4F6', title_font=dict(family='Inter'))
                 fig.update_yaxes(type="log", row=2, col=2)
                 
                 fig.update_layout(
-                    height=600,
+                    height=650,
                     showlegend=False,
                     template='plotly_white',
-                    font=dict(family="Inter", size=12),
-                    margin=dict(t=40, b=40, l=40, r=40)
+                    font=dict(family="Inter", size=12, color='#374151'),
+                    margin=dict(t=50, b=40, l=40, r=40)
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
                 
                 # Dimensionnement
-                st.markdown("### Dimensionnement")
+                st.markdown("### 📐 Dimensionnement du Cristalliseur")
                 dims = crist.dimensionnement()
                 
                 col1, col2, col3 = st.columns(3)
@@ -577,22 +811,22 @@ with tab3:
                     st.metric("Surface serpentin", f"{dims['surface_serpentin']:.2f} m²")
                 
             except Exception as e:
-                st.error(f"Erreur: {e}")
+                st.error(f"❌ Erreur: {e}")
 
 # ==================== OPTIMISATION ====================
 
 with tab4:
-    st.markdown("## Analyse d'Optimisation")
+    st.markdown("## 📊 Analyses d'Optimisation")
     
     analyse = st.selectbox(
-        "Type d'analyse",
-        ["Impact nombre d'effets", "Analyse économique", "Sensibilité pression", "Sensibilité concentration"]
+        "Sélectionnez le type d'analyse",
+        ["Impact du nombre d'effets", "Analyse économique", "Sensibilité pression vapeur", "Sensibilité concentration"]
     )
     
-    if st.button("Analyser", use_container_width=True):
-        with st.spinner("Analyse..."):
+    if st.button("▶️  Démarrer l'Analyse", use_container_width=True):
+        with st.spinner("⏳ Analyse en cours..."):
             try:
-                if analyse == "Impact nombre d'effets":
+                if analyse == "Impact du nombre d'effets":
                     resultats = []
                     progress = st.progress(0)
                     
@@ -610,38 +844,30 @@ with tab4:
                     df = pd.DataFrame(resultats)
                     st.dataframe(df, use_container_width=True, hide_index=True)
                     
-                    # Graphique
+                    # Graphiques
                     fig = make_subplots(
                         rows=1, cols=3,
-                        subplot_titles=('Économie vapeur', 'Surface', 'Consommation')
+                        subplot_titles=('Économie de vapeur', 'Surface d\'échange', 'Consommation vapeur')
                     )
                     
-                    fig.add_trace(
-                        go.Scatter(x=df['Effets'], y=df['Économie'],
-                                 mode='lines+markers', line=dict(color='#2563eb', width=2)),
-                        row=1, col=1
-                    )
+                    colors = ['#0066FF', '#10B981', '#EF4444']
                     
-                    fig.add_trace(
-                        go.Scatter(x=df['Effets'], y=df['Surface (m²)'],
-                                 mode='lines+markers', line=dict(color='#10b981', width=2)),
-                        row=1, col=2
-                    )
+                    for idx, (col, color) in enumerate(zip(['Économie', 'Surface (m²)', 'Vapeur (kg/h)'], colors)):
+                        fig.add_trace(
+                            go.Scatter(x=df['Effets'], y=df[col],
+                                     mode='lines+markers', line=dict(color=color, width=3),
+                                     marker=dict(size=12, line=dict(color='white', width=2))),
+                            row=1, col=idx+1
+                        )
                     
-                    fig.add_trace(
-                        go.Scatter(x=df['Effets'], y=df['Vapeur (kg/h)'],
-                                 mode='lines+markers', line=dict(color='#ef4444', width=2)),
-                        row=1, col=3
-                    )
-                    
-                    fig.update_xaxes(title_text="Nombre d'effets", showgrid=False)
-                    fig.update_yaxes(showgrid=True, gridcolor='#f3f4f6')
+                    fig.update_xaxes(title_text="Nombre d'effets", showgrid=False, title_font=dict(family='Inter'))
+                    fig.update_yaxes(showgrid=True, gridcolor='#F3F4F6', title_font=dict(family='Inter'))
                     
                     fig.update_layout(
-                        height=400,
+                        height=450,
                         showlegend=False,
                         template='plotly_white',
-                        font=dict(family="Inter", size=12)
+                        font=dict(family="Inter", size=12, color='#374151')
                     )
                     
                     st.plotly_chart(fig, use_container_width=True)
@@ -678,22 +904,22 @@ with tab4:
                     meilleur = df.loc[df['Coût (€/t)'].idxmin()]
                     st.markdown(f"""
                     <div class="alert-info">
-                        <strong>Configuration optimale: {int(meilleur['Effets'])} effets</strong><br>
-                        Coût: {meilleur['Coût (€/t)']:.2f} €/t · 
-                        TCI: {meilleur['TCI (M€)']:.2f} M€ · 
-                        Production: {meilleur['Production (t/an)']:.0f} t/an
+                        <strong>✓ Configuration Optimale: {int(meilleur['Effets'])} effets</strong><br><br>
+                        <strong>Coût production:</strong> {meilleur['Coût (€/t)']:.2f} €/tonne<br>
+                        <strong>Investissement:</strong> {meilleur['TCI (M€)']:.2f} M€<br>
+                        <strong>Production annuelle:</strong> {meilleur['Production (t/an)']:.0f} tonnes/an
                     </div>
                     """, unsafe_allow_html=True)
                 
-                st.markdown('<div class="alert-success">✓ Analyse terminée</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-success"><strong>✓ Analyse terminée avec succès !</strong></div>', unsafe_allow_html=True)
                 
             except Exception as e:
-                st.error(f"Erreur: {e}")
+                st.error(f"❌ Erreur: {e}")
 
 # ==================== CALCULATEUR ====================
 
 with tab5:
-    st.markdown("## Calculateurs Thermodynamiques")
+    st.markdown("## 🧮 Calculateurs Thermodynamiques")
     
     calc = st.selectbox(
         "Type de calcul",
@@ -705,15 +931,15 @@ with tab5:
     if calc == "Propriétés eau/vapeur":
         P = st.slider("Pression (bar)", 0.1, 10.0, 3.5, 0.1)
         
-        if st.button("Calculer ", use_container_width=True, key="calc1"):
+        if st.button("🔍 Calculer", use_container_width=True, key="c1"):
             T_sat = thermo.temperature_saturation(P)
             lambda_v = thermo.chaleur_latente(P)
             
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown(f"""
-                <div class="metric-card">
-                    <div class="metric-label">Température saturation</div>
+                <div class="metric-premium">
+                    <div class="metric-label">Température de Saturation</div>
                     <div class="metric-value">{T_sat:.2f}</div>
                     <div class="metric-unit">°C</div>
                 </div>
@@ -721,8 +947,8 @@ with tab5:
             
             with col2:
                 st.markdown(f"""
-                <div class="metric-card">
-                    <div class="metric-label">Chaleur latente</div>
+                <div class="metric-premium">
+                    <div class="metric-label">Chaleur Latente</div>
                     <div class="metric-value">{lambda_v/1e6:.2f}</div>
                     <div class="metric-unit">MJ/kg</div>
                 </div>
@@ -733,10 +959,10 @@ with tab5:
         C_star = thermo.solubilite_saccharose(T)
         
         st.markdown(f"""
-        <div class="metric-card">
+        <div class="metric-premium">
             <div class="metric-label">Solubilité à {T}°C</div>
             <div class="metric-value">{C_star:.2f}</div>
-            <div class="metric-unit">g/100g solution</div>
+            <div class="metric-unit">g saccharose / 100g solution</div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -747,27 +973,41 @@ with tab5:
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=T_range, y=C_range, mode='lines',
-            line=dict(color='#2563eb', width=2),
-            fill='tozeroy', fillcolor='rgba(37, 99, 235, 0.1)'
+            line=dict(color='#0066FF', width=3),
+            fill='tozeroy', fillcolor='rgba(0, 102, 255, 0.1)'
         ))
-        fig.add_vline(x=T, line_dash="dash", line_color='#ef4444')
+        fig.add_vline(x=T, line_dash="dash", line_color='#EF4444', line_width=2)
         
         fig.update_layout(
             xaxis_title="Température (°C)",
             yaxis_title="Solubilité (g/100g)",
             template='plotly_white',
-            height=400,
-            font=dict(family="Inter", size=12),
+            height=450,
+            font=dict(family="Inter", size=12, color='#374151'),
             showlegend=False
         )
         
         st.plotly_chart(fig, use_container_width=True)
 
-# ==================== FOOTER ====================
+# ==================== FOOTER PREMIUM ====================
 
 st.markdown("""
-<div class="app-footer">
-    Université Hassan 1 - FST Settat | Filière PIC 2025-2026<br>
-    <strong>OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE</strong>
+<div class="premium-footer">
+    <div class="premium-footer-content">
+        <p style="font-size: 1.125rem; font-weight: 700; color: #0066FF; margin-bottom: 0.75rem;">
+            🏭 Application Évaporation & Cristallisation
+        </p>
+        <p>
+            <strong>Université Hassan 1 - Faculté des Sciences et Techniques Settat</strong><br>
+            Filière Procédés et Ingénierie Chimique (PIC) | Année Universitaire 2025-2026
+        </p>
+        <p style="margin-top: 1rem;">
+            <strong>Réalisé par:</strong> OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE<br>
+            <strong>Encadré par:</strong> Pr. BAKHER Zineelabidine
+        </p>
+    </div>
+    <p style="font-size: 0.875rem; color: #6B7280;">
+        © 2025-2026 - Tous droits réservés
+    </p>
 </div>
 """, unsafe_allow_html=True)
