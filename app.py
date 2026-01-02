@@ -272,7 +272,7 @@ st.markdown("""
 
 st.markdown("""
 <div class="app-header">
-    <div class="app-title">🏭 Évaporation & Cristallisation</div>
+    <div class="app-title"> Évaporation & Cristallisation</div>
     <div class="app-subtitle">
         Université Hassan 1 - FST Settat | PIC 2025-2026 | 
         OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE
@@ -354,7 +354,7 @@ with tab1:
 with tab2:
     st.markdown("## Évaporation à Multiples Effets")
     
-    with st.expander("⚙️ Paramètres", expanded=False):
+    with st.expander(" Paramètres", expanded=False):
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
@@ -472,7 +472,7 @@ with tab2:
 with tab3:
     st.markdown("## Cristallisation Batch")
     
-    with st.expander("⚙️ Paramètres", expanded=False):
+    with st.expander(" Paramètres", expanded=False):
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
