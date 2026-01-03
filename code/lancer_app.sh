@@ -44,7 +44,8 @@ echo -e "${BLUE}│  📱 Pour accéder depuis mobile :                         
 echo -e "${BLUE}│     1. Notez l'adresse IP affichée ci-dessous             │${NC}"
 echo -e "${BLUE}│     2. Ouvrez http://VOTRE_IP:8501 sur votre mobile       │${NC}"
 echo -e "${BLUE}│                                                            │${NC}"
-echo -e "${BLUE}│  🛑 Pour arrêter : Appuyez sur Ctrl+C                     │${NC}"
+echo -e "${BLUE}│  🛑 Pour arrêter : Appuy
+ez sur Ctrl+C                     │${NC}"
 echo -e "${BLUE}└────────────────────────────────────────────────────────────┘${NC}"
 echo ""
 

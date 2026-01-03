@@ -1,6 +1,6 @@
 """
-Application Web - Évaporation et Cristallisation
-Version Corporate Professionnelle
+Application Scientifique - Évaporation et Cristallisation
+Style MATLAB/Scientifique Professionnel
 Université Hassan 1 - FST Settat | PIC 2025-2026
 Réalisé par: OUMSSAAD EL GHAZI | KOLMAN GOD WIN TETE
 """
@@ -20,778 +20,723 @@ from optimisation import AnalyseEconomique
 # ==================== CONFIGURATION ====================
 
 st.set_page_config(
-    page_title="Évaporation & Cristallisation Industrielle",
-    page_icon="⚙️",
+    page_title="Simulation Évaporation-Cristallisation",
+    page_icon="🔬",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
-# ==================== DESIGN CORPORATE PROFESSIONNEL ====================
+# ==================== STYLE SCIENTIFIQUE MATLAB ====================
 
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500;600&display=swap');
     
-    /* === PALETTE BLEUE PROFESSIONNELLE === */
+    /* === VARIABLES SCIENTIFIQUES === */
     :root {
-        /* Bleus corporates */
-        --primary: #0A4B8F;
-        --primary-light: #1565C0;
-        --primary-dark: #073763;
-        --primary-hover: #0D5CAB;
+        /* Couleurs académiques */
+        --primary-blue: #1565C0;
+        --primary-dark: #0D47A1;
+        --accent-blue: #1976D2;
+        --light-blue: #42A5F5;
         
-        /* Secondaires */
-        --secondary: #1976D2;
-        --accent: #2196F3;
-        --info: #42A5F5;
-        
-        /* Neutres professionnels */
-        --gray-50: #FAFAFA;
-        --gray-100: #F5F5F5;
-        --gray-200: #EEEEEE;
-        --gray-300: #E0E0E0;
-        --gray-400: #BDBDBD;
-        --gray-500: #9E9E9E;
-        --gray-600: #757575;
-        --gray-700: #616161;
-        --gray-800: #424242;
-        --gray-900: #212121;
-        
-        --white: #FFFFFF;
-        --black: #000000;
+        /* Gris techniques */
+        --gray-bg: #F5F5F5;
+        --gray-panel: #FAFAFA;
+        --gray-border: #D0D0D0;
+        --gray-sidebar: #E8E8E8;
+        --gray-text: #212121;
+        --gray-label: #616161;
         
         /* États */
         --success: #2E7D32;
-        --warning: #ED6C02;
-        --error: #D32F2F;
+        --warning: #F57C00;
+        --error: #C62828;
+        --info: #0277BD;
     }
     
-    /* === RESET GLOBAL === */
+    /* === RESET === */
     * {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        -webkit-font-smoothing: antialiased;
+        font-family: 'Roboto', -apple-system, sans-serif;
     }
     
     /* === BACKGROUND === */
     .main {
-        background: var(--gray-50);
+        background: var(--gray-bg);
     }
     
     .main .block-container {
-        padding: 2.5rem 3rem;
-        max-width: 1600px;
-    }
-    
-    /* === TABS CORPORATE PROFESSIONNELLES === */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 1rem;
-        background: white;
-        padding: 0.75rem 1rem;
-        border-radius: 0;
-        border-bottom: 2px solid var(--gray-200);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        padding: 1rem 2rem;
-        border-radius: 0;
-        font-weight: 700;
-        font-size: 0.9375rem;
-        color: var(--gray-600);
-        background: transparent;
-        border: none;
-        border-bottom: 3px solid transparent;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        color: var(--primary);
-        border-bottom-color: var(--accent);
-        background: var(--gray-50);
-    }
-    
-    .stTabs [aria-selected="true"] {
-        color: var(--primary);
-        background: var(--gray-50);
-        border-bottom-color: var(--primary);
-    }
-    
-    /* === HEADER PROFESSIONNEL === */
-    .corporate-header {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        padding: 3rem 3.5rem;
-        border-radius: 12px;
-        margin-bottom: 3rem;
-        box-shadow: 0 4px 20px rgba(10, 75, 143, 0.15);
-        border-left: 4px solid var(--accent);
-    }
-    
-    .corporate-header h1 {
-        color: white;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin: 0 0 0.75rem 0;
-        letter-spacing: -0.02em;
-    }
-    
-    .corporate-header .subtitle {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.125rem;
-        font-weight: 500;
-        margin: 0;
-        line-height: 1.6;
-    }
-    
-    .header-meta {
-        display: flex;
-        gap: 2rem;
-        margin-top: 1.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .meta-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 0.9375rem;
-        font-weight: 500;
-    }
-    
-    .meta-label {
-        color: rgba(255, 255, 255, 0.7);
-        font-weight: 600;
-    }
-    
-    /* === SECTION HEADERS === */
-    .section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         padding: 1.5rem 2rem;
-        background: white;
-        border-radius: 10px;
-        margin-bottom: 2rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        border-left: 4px solid var(--primary);
+        max-width: 1800px;
     }
     
-    .section-header h2 {
-        color: var(--gray-900);
-        font-size: 1.75rem;
+    /* === SIDEBAR MATLAB === */
+    [data-testid="stSidebar"] {
+        background: var(--gray-sidebar);
+        border-right: 2px solid var(--gray-border);
+    }
+    
+    [data-testid="stSidebar"] > div:first-child {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Logo sidebar */
+    .sidebar-logo {
+        background: var(--primary-blue);
+        padding: 1.25rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .sidebar-logo h3 {
+        color: white;
+        font-size: 1rem;
         font-weight: 700;
         margin: 0;
-        letter-spacing: -0.01em;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
     }
     
-    .section-badge {
-        background: var(--primary-light);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
+    /* Navigation items */
+    .nav-section {
+        margin: 1.5rem 0;
+    }
+    
+    .nav-title {
+        color: var(--gray-label);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+        padding: 0 0.75rem;
+    }
+    
+    .nav-item {
+        padding: 0.625rem 0.75rem;
+        margin: 0.25rem 0;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.15s ease;
         font-size: 0.875rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-    }
-    
-    /* === CARDS PROFESSIONNELLES === */
-    .professional-card {
-        background: white;
-        border: 1px solid var(--gray-200);
-        border-radius: 10px;
-        padding: 2rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        color: var(--gray-text);
         border-left: 3px solid transparent;
     }
     
-    .professional-card:hover {
-        box-shadow: 0 8px 24px rgba(10, 75, 143, 0.12);
-        border-left-color: var(--primary);
-        transform: translateY(-2px);
+    .nav-item:hover {
+        background: rgba(21, 101, 192, 0.08);
+        border-left-color: var(--primary-blue);
     }
     
-    /* === METRIC CARDS === */
-    .metric-corporate {
-        background: linear-gradient(135deg, white 0%, var(--gray-50) 100%);
-        border: 1px solid var(--gray-200);
-        border-radius: 10px;
-        padding: 1.75rem;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
+    .nav-item.active {
+        background: rgba(21, 101, 192, 0.12);
+        border-left-color: var(--primary-blue);
+        font-weight: 500;
+        color: var(--primary-dark);
     }
     
-    .metric-corporate::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+    /* === HEADER === */
+    .main-header {
+        background: white;
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--primary-blue);
     }
     
-    .metric-corporate:hover {
-        box-shadow: 0 8px 24px rgba(10, 75, 143, 0.15);
-        transform: translateY(-3px);
-    }
-    
-    .metric-label {
-        font-size: 0.8125rem;
+    .main-header h1 {
+        color: var(--gray-text);
+        font-size: 1.5rem;
         font-weight: 700;
-        color: var(--gray-600);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.75rem;
+        margin: 0 0 0.5rem 0;
     }
     
-    .metric-value {
-        font-size: 2.25rem;
-        font-weight: 800;
-        color: var(--primary);
-        line-height: 1;
-        margin: 0.5rem 0;
+    .main-header p {
+        color: var(--gray-label);
+        font-size: 0.875rem;
+        margin: 0;
     }
     
-    .metric-unit {
-        font-size: 0.9375rem;
-        color: var(--gray-500);
-        font-weight: 600;
-        margin-top: 0.25rem;
+    /* === PANEL SCIENTIFIQUE === */
+    .sci-panel {
+        background: white;
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
     }
     
-    .metric-change {
-        font-size: 0.8125rem;
-        color: var(--success);
-        font-weight: 600;
-        margin-top: 0.5rem;
+    .sci-panel-header {
+        background: var(--gray-panel);
+        border: 1px solid var(--gray-border);
+        border-bottom: 2px solid var(--primary-blue);
+        padding: 0.75rem 1rem;
+        margin: -1.25rem -1.25rem 1rem -1.25rem;
+        border-radius: 4px 4px 0 0;
     }
     
-    /* === BUTTONS PROFESSIONNELS === */
-    .stButton > button {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 0.875rem 2rem;
-        border-radius: 8px;
+    .sci-panel-header h3 {
+        color: var(--gray-text);
+        font-size: 0.875rem;
         font-weight: 700;
-        font-size: 0.9375rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(10, 75, 143, 0.2);
-        letter-spacing: 0.02em;
+        margin: 0;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
-    .stButton > button:hover {
-        background: var(--primary-hover);
-        box-shadow: 0 6px 20px rgba(10, 75, 143, 0.3);
-        transform: translateY(-2px);
+    /* === INPUTS SCIENTIFIQUES === */
+    .input-group {
+        margin-bottom: 1rem;
     }
     
-    .stButton > button:active {
-        transform: translateY(0);
+    .input-label {
+        display: block;
+        color: var(--gray-text);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        margin-bottom: 0.375rem;
     }
     
-    /* === INPUTS PROFESSIONNELS === */
+    .input-unit {
+        color: var(--gray-label);
+        font-weight: 400;
+        margin-left: 0.25rem;
+    }
+    
     .stNumberInput > div > div > input,
     .stSelectbox > div > div,
-    .stTextInput > div > div > input {
-        border: 1.5px solid var(--gray-300);
-        border-radius: 8px;
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: var(--gray-900);
-        transition: all 0.2s ease;
+    .stSlider {
+        border: 1px solid var(--gray-border) !important;
+        border-radius: 3px !important;
+        background: white !important;
+        font-family: 'Roboto Mono', monospace !important;
+        font-size: 0.875rem !important;
     }
     
     .stNumberInput > div > div > input:focus,
-    .stSelectbox > div > div:focus-within,
-    .stTextInput > div > div > input:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(10, 75, 143, 0.1);
+    .stSelectbox > div > div:focus-within {
+        border-color: var(--primary-blue) !important;
+        box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.1) !important;
     }
     
-    /* === SLIDER PROFESSIONNEL === */
-    .stSlider > div > div > div {
-        background: var(--primary);
+    /* === BOUTON CALCULER === */
+    .stButton > button {
+        background: var(--primary-blue) !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.625rem 1.5rem !important;
+        border-radius: 3px !important;
+        font-weight: 600 !important;
+        font-size: 0.875rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        transition: all 0.2s ease !important;
+        width: 100% !important;
+        margin-top: 0.5rem !important;
     }
     
-    .stSlider > div > div > div > div {
+    .stButton > button:hover {
+        background: var(--primary-dark) !important;
+        box-shadow: 0 2px 8px rgba(21, 101, 192, 0.3) !important;
+    }
+    
+    /* === ZONE RÉSULTATS === */
+    .results-panel {
+        background: var(--gray-panel);
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .result-value {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary-blue);
+    }
+    
+    .result-unit {
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.8125rem;
+        color: var(--gray-label);
+        margin-left: 0.25rem;
+    }
+    
+    /* === TABLEAUX SCIENTIFIQUES === */
+    .sci-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.8125rem;
+    }
+    
+    .sci-table th {
+        background: var(--gray-panel);
+        border: 1px solid var(--gray-border);
+        padding: 0.625rem 0.75rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--gray-text);
+    }
+    
+    .sci-table td {
+        border: 1px solid var(--gray-border);
+        padding: 0.5rem 0.75rem;
+        font-family: 'Roboto Mono', monospace;
+        color: var(--gray-text);
+    }
+    
+    .sci-table tr:nth-child(even) {
+        background: rgba(0, 0, 0, 0.02);
+    }
+    
+    /* Dataframe Streamlit */
+    .dataframe {
+        font-size: 0.8125rem !important;
+        border: 1px solid var(--gray-border) !important;
+    }
+    
+    .dataframe th {
+        background: var(--gray-panel) !important;
+        font-weight: 600 !important;
+    }
+    
+    .dataframe td {
+        font-family: 'Roboto Mono', monospace !important;
+    }
+    
+    /* === MÉTRIQUES === */
+    .metric-sci {
         background: white;
-        border: 3px solid var(--primary);
-        box-shadow: 0 2px 8px rgba(10, 75, 143, 0.2);
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .metric-sci-label {
+        font-size: 0.75rem;
+        color: var(--gray-label);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-sci-value {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        line-height: 1;
+    }
+    
+    .metric-sci-unit {
+        font-size: 0.875rem;
+        color: var(--gray-label);
+        margin-top: 0.25rem;
     }
     
     /* === ALERTS === */
+    .alert-sci {
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 0.875rem 1rem;
+        margin: 1rem 0;
+        font-size: 0.875rem;
+    }
+    
     .alert-success {
-        background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        background: #E8F5E9;
         border-left: 4px solid var(--success);
-        padding: 1.25rem 1.5rem;
-        border-radius: 8px;
         color: #1B5E20;
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
     }
     
     .alert-info {
-        background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-        border-left: 4px solid var(--primary);
-        padding: 1.25rem 1.5rem;
-        border-radius: 8px;
-        color: var(--primary-dark);
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(10, 75, 143, 0.1);
+        background: #E3F2FD;
+        border-left: 4px solid var(--info);
+        color: #01579B;
     }
     
     .alert-warning {
-        background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        background: #FFF3E0;
         border-left: 4px solid var(--warning);
-        padding: 1.25rem 1.5rem;
-        border-radius: 8px;
         color: #E65100;
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(237, 108, 2, 0.1);
     }
     
-    /* === DATAFRAME PROFESSIONNEL === */
-    .dataframe {
-        border: 1px solid var(--gray-200);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-    
-    /* === EXPANDER PROFESSIONNEL === */
-    .streamlit-expanderHeader {
+    /* === GRAPHIQUES === */
+    .plot-container {
         background: white;
-        border: 1px solid var(--gray-300);
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 0.9375rem;
-        color: var(--gray-900);
-        padding: 1rem 1.5rem;
-        transition: all 0.2s ease;
+        border: 1px solid var(--gray-border);
+        border-radius: 4px;
+        padding: 1rem;
+        margin: 1rem 0;
     }
     
-    .streamlit-expanderHeader:hover {
-        background: var(--gray-50);
-        border-color: var(--primary);
-    }
-    
-    /* === HEADERS === */
-    h2 {
-        color: var(--gray-900);
-        font-size: 1.875rem;
-        font-weight: 800;
-        margin: 2.5rem 0 1.5rem 0;
-        letter-spacing: -0.02em;
-    }
-    
-    h3 {
-        color: var(--primary);
-        font-size: 1.375rem;
-        font-weight: 700;
-        margin: 2rem 0 1rem 0;
+    /* === TABS (cachées) === */
+    .stTabs {
+        display: none;
     }
     
     /* === PROGRESS BAR === */
     .stProgress > div > div {
-        background: var(--primary);
-        height: 6px;
-        border-radius: 10px;
+        background: var(--primary-blue) !important;
     }
     
-    /* === FOOTER PROFESSIONNEL === */
-    .corporate-footer {
-        background: white;
-        border: 1px solid var(--gray-200);
-        border-radius: 10px;
-        padding: 2.5rem;
-        margin-top: 4rem;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    /* === EXPANDER === */
+    .streamlit-expanderHeader {
+        background: var(--gray-panel);
+        border: 1px solid var(--gray-border);
+        border-radius: 3px;
+        font-size: 0.875rem;
+        font-weight: 600;
     }
     
-    .corporate-footer p {
-        color: var(--gray-600);
-        font-size: 0.9375rem;
-        margin: 0.5rem 0;
-        font-weight: 500;
-    }
-    
-    .corporate-footer strong {
-        color: var(--primary);
-        font-weight: 700;
-    }
-    
-
     /* === RESPONSIVE === */
     @media (max-width: 768px) {
-        .corporate-header h1 {
-            font-size: 1.75rem;
+        .main-header h1 {
+            font-size: 1.25rem;
         }
-        .metric-value {
-            font-size: 1.75rem;
+        .metric-sci-value {
+            font-size: 1.5rem;
         }
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== HEADER ====================
+# ==================== SIDEBAR NAVIGATION ====================
 
-st.markdown("""
-<div class="corporate-header">
-    <h1>Système Industriel d'Évaporation & Cristallisation</h1>
-    <p class="subtitle">
-        Conception et simulation d'une unité intégrée de production de sucre cristallisé
-    </p>
-    <div class="header-meta">
-        <div class="meta-item">
-            <span class="meta-label">Université:</span> Hassan 1 - FST Settat
-        </div>
-        <div class="meta-item">
-            <span class="meta-label">Filière:</span> PIC 2025-2026
-        </div>
-        <div class="meta-item">
-            <span class="meta-label">Réalisé par:</span> OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================== NAVIGATION TABS ====================
-
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "TABLEAU DE BORD",
-    "ÉVAPORATION", 
-    "CRISTALLISATION",
-    "OPTIMISATION",
-    "CALCULATEURS"
-])
-
-# ==================== TABLEAU DE BORD ====================
-
-with tab1:
+with st.sidebar:
     st.markdown("""
-    <div class="corporate-header">
-        <h1>Tableau de Bord</h1>
-        <p class="subtitle">
-            Vue d'ensemble du système intégré de production de sucre cristallisé
-        </p>
-        <div class="header-meta">
-            <div class="meta-item">
-                <span class="meta-label">Capacité:</span> 20 000 kg/h
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Rendement:</span> 65% concentration
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Efficacité:</span> 2.04 économie vapeur
-            </div>
+    <div class="sidebar-logo">
+        <h3>🔬 Simulation</h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="nav-title">Modules</div>', unsafe_allow_html=True)
+    
+    page = st.radio(
+        "Navigation",
+        ["Évaporation", "Cristallisation", "Optimisation", "Calculateurs", "Documentation"],
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("---")
+    
+    st.markdown("""
+    <div style="padding: 1rem 0.75rem; font-size: 0.75rem; color: #616161;">
+        <p style="margin: 0.25rem 0;"><strong>Projet:</strong> PIC 2025-2026</p>
+        <p style="margin: 0.25rem 0;"><strong>Établissement:</strong> FST Settat</p>
+        <p style="margin: 0.25rem 0; margin-top: 0.75rem;"><strong>Étudiants:</strong></p>
+        <p style="margin: 0.25rem 0;">• OUMSSAAD EL GHAZI</p>
+        <p style="margin: 0.25rem 0;">• KOLMAN GOD WIN TETE</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ==================== MODULE ÉVAPORATION ====================
+
+if page == "Évaporation":
+    st.markdown("""
+    <div class="main-header">
+        <h1>Évaporation à Multiples Effets</h1>
+        <p>Simulation et dimensionnement d'évaporateurs industriels</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Panel Paramètres
+    st.markdown("""
+    <div class="sci-panel">
+        <div class="sci-panel-header">
+            <h3>⚙ Paramètres d'Entrée</h3>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Métriques principales
-    col1, col2, col3, col4 = st.columns(4)
-    
-    metrics = [
-        ("Production Annuelle", "43 000", "tonnes/an", "+12.5%", col1),
-        ("Économie Vapeur", "2.04", "ratio", "+8.2%", col2),
-        ("Retour Invest.", "0.08", "années", "-15.3%", col3),
-        ("VAN Projet", "274", "M€", "+22.1%", col4)
-    ]
-    
-    for label, value, unit, change, col in metrics:
-        with col:
-            st.markdown(f"""
-            <div class="metric-corporate">
-                <div class="metric-label">{label}</div>
-                <div class="metric-value">{value}</div>
-                <div class="metric-unit">{unit}</div>
-                <div class="metric-change">{change}</div>
-            </div>
-            """, unsafe_allow_html=True)
-    
-    # Spécifications
-    st.markdown('<div class="section-header"><h2>Spécifications Techniques</h2><span class="section-badge">SYSTÈME</span></div>', unsafe_allow_html=True)
-    
-    col1, col2 = st.columns([2, 1])
+    col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown('<div class="professional-card">', unsafe_allow_html=True)
+        st.markdown('<div class="input-label">Débit d\'alimentation <span class="input-unit">(kg/h)</span></div>', unsafe_allow_html=True)
+        F_debit = st.number_input("Débit", 5000, 50000, 20000, 1000, label_visibility="collapsed", key="F")
         
-        specs = pd.DataFrame({
-            'Paramètre': [
-                'Débit alimentation',
-                'Concentration entrée',
-                'Concentration finale',
-                'Température alimentation',
-                'Pression vapeur',
-                'Pression condenseur'
-            ],
-            'Valeur': [
-                '20 000 kg/h',
-                '15%',
-                '65%',
-                '85°C',
-                '3.5 bar',
-                '0.15 bar'
-            ],
-            'Statut': [
-                'Optimal',
-                'Conforme',
-                'Cible',
-                'Standard',
-                'Nominal',
-                'Minimum'
-            ]
-        })
+        st.markdown('<div class="input-label">Concentration entrée <span class="input-unit">(%  massique)</span></div>', unsafe_allow_html=True)
+        x_entree = st.number_input("Concentration entrée", 5.0, 30.0, 15.0, 0.5, label_visibility="collapsed", key="x_in")
         
-        st.dataframe(specs, use_container_width=True, hide_index=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="input-label">Température alimentation <span class="input-unit">(°C)</span></div>', unsafe_allow_html=True)
+        T_alim = st.number_input("Température", 60.0, 100.0, 85.0, 1.0, label_visibility="collapsed", key="T_in")
     
     with col2:
-        st.markdown('<div class="professional-card">', unsafe_allow_html=True)
-        st.markdown("### Indicateurs Clés")
-        st.markdown("""
-        - **Efficacité énergétique:** 87.3%
-        - **Disponibilité système:** 96.5%
-        - **Qualité produit:** 99.5%
-        - **Taux utilisation:** 92.8%
-        """)
-        st.markdown('</div>', unsafe_allow_html=True)
-
-# ==================== ÉVAPORATION ====================
-
-with tab2:
-    st.markdown("""
-    <div class="corporate-header">
-        <h1>Module d'Évaporation</h1>
-        <p class="subtitle">Simulation et dimensionnement d'évaporateurs à multiples effets</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    with st.expander("PARAMÈTRES DE SIMULATION", expanded=False):
-        col1, col2, col3, col4 = st.columns(4)
+        st.markdown('<div class="input-label">Nombre d\'effets</div>', unsafe_allow_html=True)
+        n_effets = st.selectbox("Nombre effets", [2, 3, 4, 5], index=1, label_visibility="collapsed")
         
-        with col1:
-            n_effets = st.slider("Nombre d'effets", 2, 5, 3)
-        with col2:
-            P_vapeur = st.number_input("Pression vapeur (bar)", 2.0, 5.0, 3.5, 0.1)
-        with col3:
-            x_final = st.number_input("Concentration finale (%)", 50.0, 80.0, 65.0, 1.0)
-        with col4:
-            F_debit = st.number_input("Débit alimentation (kg/h)", 10000, 40000, 20000, 1000)
+        st.markdown('<div class="input-label">Concentration finale <span class="input-unit">(% massique)</span></div>', unsafe_allow_html=True)
+        x_final = st.number_input("Concentration finale", 50.0, 80.0, 65.0, 1.0, label_visibility="collapsed", key="x_out")
+        
+        st.markdown('<div class="input-label">Pression vapeur <span class="input-unit">(bar abs)</span></div>', unsafe_allow_html=True)
+        P_vapeur = st.number_input("Pression vapeur", 2.0, 5.0, 3.5, 0.1, label_visibility="collapsed", key="P_vap")
     
-    if st.button("LANCER LA SIMULATION", use_container_width=True):
+    # Bouton calculer
+    if st.button("▶ CALCULER", use_container_width=True):
         with st.spinner("Calcul en cours..."):
             try:
                 evap = EvaporateurMultiplesEffets(n_effets=n_effets)
-                evap.P_vapeur = P_vapeur
-                evap.x_final = x_final / 100
                 evap.F = F_debit
+                evap.x_F = x_entree / 100
+                evap.x_final = x_final / 100
+                evap.P_vapeur = P_vapeur
+                evap.T_F = T_alim
                 evap.resoudre_bilans()
                 
-                st.markdown('<div class="alert-success">✓ Simulation réussie - Résultats disponibles</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-sci alert-success"><strong>✓ Simulation réussie</strong> - Convergence atteinte</div>', unsafe_allow_html=True)
                 
-                # Métriques
+                # Métriques KPI
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📊 Indicateurs Clés</h3></div>', unsafe_allow_html=True)
+                
                 col1, col2, col3, col4 = st.columns(4)
                 
-                metrics_data = [
+                metrics = [
                     ("Vapeur Chauffe", f"{evap.S:.0f}", "kg/h", col1),
-                    ("Économie Vapeur", f"{evap.economie_vapeur():.2f}", "ratio", col2),
-                    ("Surface Totale", f"{np.sum(evap.A):.0f}", "m²", col3),
-                    ("Concentration", f"{evap.x[-1]*100:.1f}", "%", col4)
+                    ("Économie Vapeur", f"{evap.economie_vapeur():.3f}", "ratio", col2),
+                    ("Surface Totale", f"{np.sum(evap.A):.1f}", "m²", col3),
+                    ("Concentration", f"{evap.x[-1]*100:.2f}", "%", col4)
                 ]
                 
-                for label, value, unit, col in metrics_data:
+                for label, value, unit, col in metrics:
                     with col:
                         st.markdown(f"""
-                        <div class="metric-corporate">
-                            <div class="metric-label">{label}</div>
-                            <div class="metric-value">{value}</div>
-                            <div class="metric-unit">{unit}</div>
+                        <div class="metric-sci">
+                            <div class="metric-sci-label">{label}</div>
+                            <div class="metric-sci-value">{value}</div>
+                            <div class="metric-sci-unit">{unit}</div>
                         </div>
                         """, unsafe_allow_html=True)
                 
                 # Tableau résultats
-                st.markdown('<div class="section-header"><h2>Résultats par Effet</h2></div>', unsafe_allow_html=True)
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📋 Résultats par Effet</h3></div>', unsafe_allow_html=True)
                 
                 resultats = pd.DataFrame({
                     'Effet': range(1, n_effets + 1),
-                    'Liquide (kg/h)': [f"{L:.0f}" for L in evap.L],
-                    'Vapeur (kg/h)': [f"{V:.0f}" for V in evap.V],
-                    'Concentration (%)': [f"{x*100:.1f}" for x in evap.x],
-                    'Température (°C)': [f"{T:.1f}" for T in evap.T],
-                    'Pression (bar)': [f"{P:.2f}" for P in evap.P],
-                    'Surface (m²)': [f"{A:.1f}" for A in evap.A]
+                    'T (°C)': [f"{T:.2f}" for T in evap.T],
+                    'P (bar)': [f"{P:.3f}" for P in evap.P],
+                    'L (kg/h)': [f"{L:.0f}" for L in evap.L],
+                    'V (kg/h)': [f"{V:.0f}" for V in evap.V],
+                    'x (%)': [f"{x*100:.2f}" for x in evap.x],
+                    'A (m²)': [f"{A:.2f}" for A in evap.A]
                 })
                 
                 st.dataframe(resultats, use_container_width=True, hide_index=True)
                 
                 # Graphiques
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📈 Profils Opératoires</h3></div>', unsafe_allow_html=True)
+                
                 fig = make_subplots(
                     rows=2, cols=2,
-                    subplot_titles=('Profil de Température', 'Profil de Concentration', 
-                                  'Profil de Pression', 'Surfaces d\'Échange'),
-                    vertical_spacing=0.12
+                    subplot_titles=('Température par Effet', 'Concentration par Effet',
+                                  'Pression par Effet', 'Surface d\'Échange par Effet'),
+                    vertical_spacing=0.15,
+                    horizontal_spacing=0.12
                 )
                 
                 effets = list(range(1, n_effets + 1))
                 
+                # Température
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.T, mode='lines+markers',
-                             line=dict(color='#0A4B8F', width=3),
-                             marker=dict(size=10, color='#0A4B8F', line=dict(color='white', width=2))),
+                             line=dict(color='#1565C0', width=2),
+                             marker=dict(size=8, color='#1565C0', symbol='circle',
+                                       line=dict(color='white', width=2)),
+                             name='T'),
                     row=1, col=1
                 )
                 
+                # Concentration
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.x * 100, mode='lines+markers',
-                             line=dict(color='#1976D2', width=3),
-                             marker=dict(size=10, color='#1976D2', line=dict(color='white', width=2))),
+                             line=dict(color='#0D47A1', width=2),
+                             marker=dict(size=8, color='#0D47A1', symbol='square',
+                                       line=dict(color='white', width=2)),
+                             name='x'),
                     row=1, col=2
                 )
                 
+                # Pression
                 fig.add_trace(
                     go.Scatter(x=effets, y=evap.P, mode='lines+markers',
-                             line=dict(color='#2196F3', width=3),
-                             marker=dict(size=10, color='#2196F3', line=dict(color='white', width=2))),
+                             line=dict(color='#1976D2', width=2),
+                             marker=dict(size=8, color='#1976D2', symbol='diamond',
+                                       line=dict(color='white', width=2)),
+                             name='P'),
                     row=2, col=1
                 )
                 
+                # Surfaces
                 fig.add_trace(
-                    go.Bar(x=effets, y=evap.A, marker=dict(color='#42A5F5', line=dict(color='#0A4B8F', width=1.5))),
+                    go.Bar(x=effets, y=evap.A,
+                         marker=dict(color='#42A5F5',
+                                   line=dict(color='#1565C0', width=1.5)),
+                         name='A'),
                     row=2, col=2
                 )
                 
-                fig.update_xaxes(title_text="Numéro d'Effet", showgrid=True, gridcolor='#F5F5F5')
-                fig.update_yaxes(showgrid=True, gridcolor='#F5F5F5')
+                fig.update_xaxes(title_text="Numéro d'Effet", showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="T (°C)", row=1, col=1, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="x (%)", row=1, col=2, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="P (bar)", row=2, col=1, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="A (m²)", row=2, col=2, showgrid=True, gridcolor='#E0E0E0')
                 
                 fig.update_layout(
                     height=650,
                     showlegend=False,
                     template='plotly_white',
-                    font=dict(family="Inter", size=12, color='#212121'),
+                    font=dict(family="Roboto", size=11, color='#212121'),
                     paper_bgcolor='white',
-                    plot_bgcolor='white'
+                    plot_bgcolor='#FAFAFA'
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
                 
             except Exception as e:
-                st.error(f"Erreur lors de la simulation: {e}")
+                st.markdown(f'<div class="alert-sci alert-warning"><strong>⚠ Erreur</strong> - {str(e)}</div>', unsafe_allow_html=True)
 
-# ==================== CRISTALLISATION ====================
+# ==================== MODULE CRISTALLISATION ====================
 
-with tab3:
+elif page == "Cristallisation":
     st.markdown("""
-    <div class="corporate-header">
-        <h1>Module de Cristallisation</h1>
-        <p class="subtitle">Simulation de cristallisation batch avec contrôle thermique</p>
+    <div class="main-header">
+        <h1>Cristallisation Batch</h1>
+        <p>Simulation de cristallisation par refroidissement contrôlé</p>
     </div>
     """, unsafe_allow_html=True)
     
-    with st.expander("PARAMÈTRES DE SIMULATION", expanded=False):
-        col1, col2, col3, col4 = st.columns(4)
-        
-        with col1:
-            T_initial = st.number_input("Température initiale (°C)", 60.0, 80.0, 70.0, 1.0)
-        with col2:
-            T_final = st.number_input("Température finale (°C)", 25.0, 45.0, 35.0, 1.0)
-        with col3:
-            duree = st.number_input("Durée (heures)", 2.0, 8.0, 4.0, 0.5)
-        with col4:
-            profil = st.selectbox("Profil thermique", ["lineaire", "exponentiel", "optimal"])
+    # Panel Paramètres
+    st.markdown("""
+    <div class="sci-panel">
+        <div class="sci-panel-header">
+            <h3>⚙ Paramètres d'Entrée</h3>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    if st.button("LANCER LA SIMULATION ", use_container_width=True):
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown('<div class="input-label">Température initiale <span class="input-unit">(°C)</span></div>', unsafe_allow_html=True)
+        T_initial = st.number_input("T initial", 60.0, 80.0, 70.0, 1.0, label_visibility="collapsed", key="T0")
+        
+        st.markdown('<div class="input-label">Température finale <span class="input-unit">(°C)</span></div>', unsafe_allow_html=True)
+        T_final = st.number_input("T final", 25.0, 45.0, 35.0, 1.0, label_visibility="collapsed", key="Tf")
+        
+        st.markdown('<div class="input-label">Masse batch <span class="input-unit">(kg)</span></div>', unsafe_allow_html=True)
+        masse_batch = st.number_input("Masse", 1000, 10000, 5000, 500, label_visibility="collapsed", key="masse")
+    
+    with col2:
+        st.markdown('<div class="input-label">Durée opération <span class="input-unit">(heures)</span></div>', unsafe_allow_html=True)
+        duree = st.number_input("Durée", 2.0, 8.0, 4.0, 0.5, label_visibility="collapsed", key="duree")
+        
+        st.markdown('<div class="input-label">Profil thermique</div>', unsafe_allow_html=True)
+        profil = st.selectbox("Profil", ["lineaire", "exponentiel", "optimal"], label_visibility="collapsed")
+        
+        st.markdown('<div class="input-label">Points de calcul</div>', unsafe_allow_html=True)
+        n_points = st.number_input("Points", 100, 1000, 500, 50, label_visibility="collapsed", key="npts")
+    
+    # Bouton calculer
+    if st.button("▶ CALCULER", use_container_width=True, key="calc_crist"):
         with st.spinner("Simulation en cours..."):
             try:
                 crist = CristalliseurBatch()
                 crist.T_0 = T_initial
                 crist.T_f = T_final
                 crist.duree = duree * 3600
-                crist.simuler(profil=profil, n_points=500)
+                crist.masse = masse_batch
+                crist.simuler(profil=profil, n_points=int(n_points))
                 
-                st.markdown('<div class="alert-success">✓ Simulation terminée avec succès</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-sci alert-success"><strong>✓ Simulation terminée</strong> - Convergence atteinte</div>', unsafe_allow_html=True)
                 
-                # Métriques
-                col1, col2, col3 = st.columns(3)
+                # Métriques KPI
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📊 Indicateurs Clés</h3></div>', unsafe_allow_html=True)
+                
+                col1, col2, col3, col4 = st.columns(4)
                 
                 metrics = [
-                    ("Taille Moyenne Cristaux", f"{crist.L_50*1e6:.1f}", "µm", col1),
-                    ("Coefficient Variation", f"{crist.CV:.1f}", "%", col2),
-                    ("Concentration Finale", f"{crist.concentration[-1]:.2f}", "g/100g", col3)
+                    ("Taille L₅₀", f"{crist.L_50*1e6:.1f}", "µm", col1),
+                    ("CV", f"{crist.CV:.2f}", "%", col2),
+                    ("Concentration", f"{crist.concentration[-1]:.2f}", "g/100g", col3),
+                    ("Sursaturation", f"{crist.sursaturation[-1]:.4f}", "-", col4)
                 ]
                 
                 for label, value, unit, col in metrics:
                     with col:
                         st.markdown(f"""
-                        <div class="metric-corporate">
-                            <div class="metric-label">{label}</div>
-                            <div class="metric-value">{value}</div>
-                            <div class="metric-unit">{unit}</div>
+                        <div class="metric-sci">
+                            <div class="metric-sci-label">{label}</div>
+                            <div class="metric-sci-value">{value}</div>
+                            <div class="metric-sci-unit">{unit}</div>
                         </div>
                         """, unsafe_allow_html=True)
                 
                 # Graphiques
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📈 Évolution Temporelle</h3></div>', unsafe_allow_html=True)
+                
                 temps_h = crist.temps / 3600
                 
                 fig = make_subplots(
                     rows=2, cols=2,
-                    subplot_titles=('Évolution Température', 'Évolution Sursaturation',
-                                  'Évolution Concentration', 'Évolution Population'),
-                    vertical_spacing=0.12
+                    subplot_titles=('Température vs Temps', 'Sursaturation vs Temps',
+                                  'Concentration vs Temps', 'Population vs Temps'),
+                    vertical_spacing=0.15,
+                    horizontal_spacing=0.12
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.temperature, mode='lines',
-                             line=dict(color='#0A4B8F', width=3)),
+                             line=dict(color='#1565C0', width=2)),
                     row=1, col=1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.sursaturation, mode='lines',
-                             line=dict(color='#1976D2', width=3)),
+                             line=dict(color='#0D47A1', width=2)),
                     row=1, col=2
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.concentration, mode='lines',
-                             line=dict(color='#2196F3', width=3)),
+                             line=dict(color='#1976D2', width=2)),
                     row=2, col=1
                 )
                 
                 fig.add_trace(
                     go.Scatter(x=temps_h, y=crist.moments[:, 0], mode='lines',
-                             line=dict(color='#42A5F5', width=3)),
+                             line=dict(color='#42A5F5', width=2)),
                     row=2, col=2
                 )
                 
-                fig.update_xaxes(title_text="Temps (heures)", showgrid=True, gridcolor='#F5F5F5')
-                fig.update_yaxes(showgrid=True, gridcolor='#F5F5F5')
-                fig.update_yaxes(type="log", row=2, col=2)
+                fig.update_xaxes(title_text="Temps (h)", showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="T (°C)", row=1, col=1, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="S (-)", row=1, col=2, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="C (g/100g)", row=2, col=1, showgrid=True, gridcolor='#E0E0E0')
+                fig.update_yaxes(title_text="m₀ (#/m³)", row=2, col=2, type="log", showgrid=True, gridcolor='#E0E0E0')
                 
                 fig.update_layout(
                     height=650,
                     showlegend=False,
                     template='plotly_white',
-                    font=dict(family="Inter", size=12, color='#212121')
+                    font=dict(family="Roboto", size=11, color='#212121'),
+                    paper_bgcolor='white',
+                    plot_bgcolor='#FAFAFA'
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
                 
                 # Dimensionnement
-                st.markdown('<div class="section-header"><h2>Dimensionnement Équipement</h2></div>', unsafe_allow_html=True)
+                st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>🔧 Dimensionnement Équipement</h3></div>', unsafe_allow_html=True)
                 dims = crist.dimensionnement()
                 
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("Volume Cristalliseur", f"{dims['volume']:.2f} m³")
+                    st.metric("Volume", f"{dims['volume']:.2f} m³")
                     st.metric("Diamètre", f"{dims['diametre']:.2f} m")
                 with col2:
                     st.metric("Hauteur", f"{dims['hauteur']:.2f} m")
@@ -800,25 +745,27 @@ with tab3:
                     st.metric("Surface Serpentin", f"{dims['surface_serpentin']:.2f} m²")
                 
             except Exception as e:
-                st.error(f"Erreur: {e}")
+                st.markdown(f'<div class="alert-sci alert-warning"><strong>⚠ Erreur</strong> - {str(e)}</div>', unsafe_allow_html=True)
 
-# ==================== OPTIMISATION ====================
+# ==================== MODULE OPTIMISATION ====================
 
-with tab4:
+elif page == "Optimisation":
     st.markdown("""
-    <div class="corporate-header">
-        <h1>Module d'Optimisation</h1>
-        <p class="subtitle">Analyses de sensibilité et optimisation technico-économique</p>
+    <div class="main-header">
+        <h1>Optimisation Technico-Économique</h1>
+        <p>Analyses de sensibilité et optimisation multi-critères</p>
     </div>
     """, unsafe_allow_html=True)
     
+    st.markdown('<div class="input-label">Type d\'analyse</div>', unsafe_allow_html=True)
     analyse = st.selectbox(
-        "Type d'analyse",
-        ["Impact nombre d'effets", "Analyse économique comparative", 
-         "Sensibilité pression vapeur", "Sensibilité concentration"]
+        "Analyse",
+        ["Impact nombre d'effets", "Analyse économique comparative",
+         "Sensibilité pression vapeur", "Sensibilité concentration"],
+        label_visibility="collapsed"
     )
     
-    if st.button("DÉMARRER L'ANALYSE", use_container_width=True):
+    if st.button("▶ DÉMARRER L'ANALYSE", use_container_width=True, key="optim"):
         with st.spinner("Analyse en cours..."):
             try:
                 if analyse == "Impact nombre d'effets":
@@ -829,13 +776,14 @@ with tab4:
                         evap = EvaporateurMultiplesEffets(n_effets=n)
                         evap.resoudre_bilans()
                         resultats.append({
-                            'Nombre Effets': n,
-                            'Économie Vapeur': f"{evap.economie_vapeur():.2f}",
-                            'Surface Totale (m²)': f"{np.sum(evap.A):.0f}",
-                            'Vapeur Consommée (kg/h)': f"{evap.S:.0f}"
+                            'N': n,
+                            'Économie': f"{evap.economie_vapeur():.3f}",
+                            'Surface (m²)': f"{np.sum(evap.A):.1f}",
+                            'Vapeur (kg/h)': f"{evap.S:.0f}"
                         })
                         progress.progress((idx + 1) / 4)
                     
+                    st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📋 Résultats</h3></div>', unsafe_allow_html=True)
                     df = pd.DataFrame(resultats)
                     st.dataframe(df, use_container_width=True, hide_index=True)
                 
@@ -856,85 +804,82 @@ with tab4:
                         cout = (OPEX['total'] + 0.03*TCI + TCI/15) / production
                         
                         resultats.append({
-                            'Effets': n,
+                            'N': n,
                             'TCI (M€)': f"{TCI/1e6:.2f}",
                             'OPEX (k€/an)': f"{OPEX['total']/1000:.0f}",
-                            'Coût Production (€/t)': f"{cout:.2f}",
-                            'Production (t/an)': f"{production:.0f}"
+                            'Coût (€/t)': f"{cout:.2f}",
+                            'Prod (t/an)': f"{production:.0f}"
                         })
                         
                         progress.progress((idx + 1) / 4)
                     
+                    st.markdown('<div class="sci-panel-header" style="margin: 1.5rem 0 1rem 0;"><h3>📋 Résultats</h3></div>', unsafe_allow_html=True)
                     df = pd.DataFrame(resultats)
                     st.dataframe(df, use_container_width=True, hide_index=True)
-                    
-                    meilleur = df.loc[df['Coût Production (€/t)'].str.replace(',', '.').astype(float).idxmin()]
-                    st.markdown(f"""
-                    <div class="alert-info">
-                        <strong>Configuration Optimale: {meilleur['Effets']} effets</strong><br>
-                        Coût de production: {meilleur['Coût Production (€/t)']} €/tonne<br>
-                        Investissement total: {meilleur['TCI (M€)']} M€
-                    </div>
-                    """, unsafe_allow_html=True)
                 
-                st.markdown('<div class="alert-success">✓ Analyse terminée avec succès</div>', unsafe_allow_html=True)
+                st.markdown('<div class="alert-sci alert-success"><strong>✓ Analyse terminée</strong></div>', unsafe_allow_html=True)
                 
             except Exception as e:
-                st.error(f"Erreur: {e}")
+                st.markdown(f'<div class="alert-sci alert-warning"><strong>⚠ Erreur</strong> - {str(e)}</div>', unsafe_allow_html=True)
 
-# ==================== CALCULATEURS ====================
+# ==================== MODULE CALCULATEURS ====================
 
-with tab5:
+elif page == "Calculateurs":
     st.markdown("""
-    <div class="corporate-header">
+    <div class="main-header">
         <h1>Calculateurs Thermodynamiques</h1>
-        <p class="subtitle">Outils de calcul pour propriétés physico-chimiques</p>
+        <p>Outils de calcul de propriétés physico-chimiques</p>
     </div>
     """, unsafe_allow_html=True)
     
     thermo = ProprietesThermodynamiques()
     
+    st.markdown('<div class="input-label">Type de calcul</div>', unsafe_allow_html=True)
     calc = st.selectbox(
-        "Type de calcul",
-        ["Propriétés eau et vapeur", "Solubilité saccharose", 
-         "Élévation point ébullition", "Économie vapeur"]
+        "Calcul",
+        ["Propriétés eau et vapeur", "Solubilité saccharose",
+         "Élévation point ébullition", "Propriétés solutions"],
+        label_visibility="collapsed"
     )
     
     if calc == "Propriétés eau et vapeur":
-        P = st.slider("Pression (bar)", 0.1, 10.0, 3.5, 0.1)
+        st.markdown('<div class="input-label">Pression <span class="input-unit">(bar abs)</span></div>', unsafe_allow_html=True)
+        P = st.slider("Pression", 0.1, 10.0, 3.5, 0.1, label_visibility="collapsed")
         
-        if st.button("CALCULER LES PROPRIÉTÉS", use_container_width=True):
+        if st.button("▶ CALCULER", use_container_width=True, key="calc1"):
             T_sat = thermo.temperature_saturation(P)
             lambda_v = thermo.chaleur_latente(P)
             
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown(f"""
-                <div class="metric-corporate">
-                    <div class="metric-label">Température Saturation</div>
-                    <div class="metric-value">{T_sat:.2f}</div>
-                    <div class="metric-unit">°C</div>
+                <div class="metric-sci">
+                    <div class="metric-sci-label">Température Saturation</div>
+                    <div class="metric-sci-value">{T_sat:.2f}</div>
+                    <div class="metric-sci-unit">°C</div>
                 </div>
                 """, unsafe_allow_html=True)
             
             with col2:
                 st.markdown(f"""
-                <div class="metric-corporate">
-                    <div class="metric-label">Chaleur Latente</div>
-                    <div class="metric-value">{lambda_v/1e6:.2f}</div>
-                    <div class="metric-unit">MJ/kg</div>
+                <div class="metric-sci">
+                    <div class="metric-sci-label">Chaleur Latente</div>
+                    <div class="metric-sci-value">{lambda_v/1e6:.3f}</div>
+                    <div class="metric-sci-unit">MJ/kg</div>
                 </div>
                 """, unsafe_allow_html=True)
     
     elif calc == "Solubilité saccharose":
-        T = st.slider("Température (°C)", 20, 90, 60)
+        st.markdown('<div class="input-label">Température <span class="input-unit">(°C)</span></div>', unsafe_allow_html=True)
+        T = st.slider("Température", 20, 90, 60, label_visibility="collapsed")
+        
         C_star = thermo.solubilite_saccharose(T)
         
         st.markdown(f"""
-        <div class="metric-corporate">
-            <div class="metric-label">Solubilité à {T}°C</div>
-            <div class="metric-value">{C_star:.2f}</div>
-            <div class="metric-unit">g saccharose / 100g solution</div>
+        <div class="metric-sci">
+            <div class="metric-sci-label">Solubilité à {T}°C</div>
+            <div class="metric-sci-value">{C_star:.2f}</div>
+            <div class="metric-sci-unit">g saccharose / 100g solution</div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -945,37 +890,52 @@ with tab5:
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=T_range, y=C_range, mode='lines',
-            line=dict(color='#0A4B8F', width=3),
-            fill='tozeroy', fillcolor='rgba(10, 75, 143, 0.1)'
+            line=dict(color='#1565C0', width=3),
+            fill='tozeroy', fillcolor='rgba(21, 101, 192, 0.1)'
         ))
-        fig.add_vline(x=T, line_dash="dash", line_color='#1976D2', line_width=2)
+        fig.add_vline(x=T, line_dash="dash", line_color='#0D47A1', line_width=2)
         
         fig.update_layout(
             xaxis_title="Température (°C)",
             yaxis_title="Solubilité (g/100g solution)",
             template='plotly_white',
-            height=450,
-            font=dict(family="Inter", size=12, color='#212121')
+            height=400,
+            font=dict(family="Roboto", size=11, color='#212121'),
+            paper_bgcolor='white',
+            plot_bgcolor='#FAFAFA'
         )
         
         st.plotly_chart(fig, use_container_width=True)
 
-# ==================== FOOTER ====================
+# ==================== MODULE DOCUMENTATION ====================
 
-st.markdown("""
-<div class="corporate-footer">
-    <p style="font-size: 1.125rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">
-        SYSTÈME INDUSTRIEL D'ÉVAPORATION & CRISTALLISATION
-    </p>
-    <p>
-        <strong>Université Hassan 1 - Faculté des Sciences et Techniques de Settat</strong><br>
-        Filière Procédés et Ingénierie Chimique (PIC) | Année Universitaire 2025-2026
-    </p>
-    <p style="margin-top: 1.5rem;">
-        <strong>Réalisé par:</strong> OUMSSAAD EL GHAZI · KOLMAN GOD WIN TETE
-    </p>
-    <p style="font-size: 0.875rem; color: var(--gray-500); margin-top: 1rem;">
-        © 2025-2026 - Tous droits réservés
-    </p>
-</div>
-""", unsafe_allow_html=True)
+elif page == "Documentation":
+    st.markdown("""
+    <div class="main-header">
+        <h1>Documentation Technique</h1>
+        <p>Guide d'utilisation et références</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="sci-panel">
+        <div class="sci-panel-header">
+            <h3>📚 Modules Disponibles</h3>
+        </div>
+        <p><strong>Évaporation :</strong> Simulation d'évaporateurs à multiples effets</p>
+        <p><strong>Cristallisation :</strong> Modélisation batch par refroidissement</p>
+        <p><strong>Optimisation :</strong> Analyses technico-économiques</p>
+        <p><strong>Calculateurs :</strong> Propriétés thermodynamiques</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="sci-panel">
+        <div class="sci-panel-header">
+            <h3>🔗 Ressources</h3>
+        </div>
+        <p><strong>Repository GitHub :</strong> github.com/OUMSSAAD/Projet_Evapo_Crist</p>
+        <p><strong>Docker Hub :</strong> docker pull oumssaad123/evapo-crist-app:latest</p>
+        <p><strong>Documentation CoolProp :</strong> coolprop.org</p>
+    </div>
+    """, unsafe_allow_html=True)
